@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- inline styles here -->
+    <style>
+         body {
+            background-color: whitesmoke;
+        }
+        
+        a{
+            text-decoration: none;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .container {
+            /* margin: auto; */
+            text-align: center;
+        }
+        
+        .card-container {
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 8px 32px 3px rgba(0,0,0,.12);
+            margin-bottom: 20px;
+        }
+        
+        .tel-contact, .btn {
+            margin-top: 10px;
+        }
+        
+        svg{
+            color: rgb(10, 10, 151);
+        }
+        
+        h2, h1 {
+            color: rgb(10, 10, 151);
+        }
+        
+        .form-control {
+            border-radius: 20px;
+            border-color: rgb(10, 10, 151);
+        }
+        
+        #textarea {
+            border-radius: 20px;
+        }
+        
+        .five {
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        input{
+            height: 50px;
+        }
+        
+        .card-container {
+            max-width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .one {
+                display: flex;
+                justify-content: space-around;
+            }
+        
+            .two {
+                max-width: 50%;
+                margin: 0 auto;
+            }
+        
+            .three {
+                max-width: 90%;
+                margin: 0 auto;
+            }
+        
+            .four {
+                max-width: 100%;
+                margin: 0 auto;
+                /* background-color: aqua; */
+            }
+        
+            .five {
+                max-width: 80%;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-around;
+            }
+        }
+        /* Il codice CSS che hai fornito sopra */
+        .group {
+            position: relative;
+        }
+
+        .input {
+            font-size: 16px;
+            padding: 10px 10px 10px 5px;
+            display: block;
+            width: 450px;
+            border: none;
+            border-bottom: 1px solid #515151;
+            background: transparent;
+        }
+
+            .input:focus {
+                outline: none;
+            }
+
+        label {
+            color: #999;
+            font-size: 18px;
+            font-weight: normal;
+            position: absolute;
+            pointer-events: none;
+            left: 5px;
+            top: 10px;
+            transition: 0.2s ease all;
+            -moz-transition: 0.2s ease all;
+            -webkit-transition: 0.2s ease all;
+        }
+
+        .input:focus ~ label,
+        .input:valid ~ label {
+            top: -20px;
+            font-size: 14px;
+            color: #5264AE;
+        }
+
+        .bar {
+            position: relative;
+            display: block;
+            width: 200px;
+        }
+
+            .bar:before,
+            .bar:after {
+                content: '';
+                height: 2px;
+                width: 0;
+                bottom: 1px;
+                position: absolute;
+                background: #5264AE;
+                transition: 0.2s ease all;
+                -moz-transition: 0.2s ease all;
+                -webkit-transition: 0.2s ease all;
+            }
+
+        .input:focus ~ .bar:before,
+        .input:focus ~ .bar:after {
+            width: 225%;
+        }
+
+        .highlight {
+            position: absolute;
+            height: 60%;
+            width: 100px;
+            top: 25%;
+            left: 0;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .input:focus ~ .highlight {
+            animation: inputHighlighter 0.3s ease;
+        }
+
+        @keyframes inputHighlighter {
+            from {
+                background: #5264AE;
+            }
+
+            to {
+                width: 0;
+                background: transparent;
+            }
+        }
+        /* Fine del codice CSS fornito */
+
+        /* Aggiunte per il modale */
+        .modal-content {
+            background-color: #fff; /* Colore di sfondo del modale */
+            border-radius: 10px; /* Bordi arrotondati */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra */
+        }
+
+        .modal-header {
+            background-color: #5264AE; /* Colore di sfondo dell'header */
+            color: #fff; /* Colore del testo dell'header */
+            border-radius: 10px 10px 0 0; /* Bordi arrotondati solo in alto */
+        }
+
+        .modal-body, .modal-footer {
+            padding: 20px; /* Spazio interno */
+        }
+
+        .modal-footer {
+            background-color: #f8f9fa; /* Colore di sfondo del footer */
+            border-top: 1px solid #dee2e6; /* Linea superiore */
+            border-radius: 0 0 10px 10px; /* Bordi arrotondati solo in basso */
+        }
+
+        .btn-primary {
+            background-color: #5264AE; /* Colore di sfondo del pulsante principale */
+            border-color: #5264AE; /* Colore del bordo del pulsante */
+        }
+
+            .btn-primary:hover {
+                background-color: #3949AB; /* Colore di sfondo del pulsante principale al passaggio del mouse */
+                border-color: #3949AB; /* Colore del bordo del pulsante al passaggio del mouse */
+            }
+
+        /* CSS per il form */
+        .container.two {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+            .container.two p {
+                margin-bottom: 10px;
+            }
+
+        .container.three {
+            margin-top: 50px;
+        }
+
+            .container.three form {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .container.three input,
+            .container.three textarea {
+                margin-bottom: 20px;
+            }
+
+            .container.three .form-check {
+                margin-bottom: 20px;
+            }
+
+            .container.three button[type="submit"] {
+                width: 100%;
+                max-width: 120px;
+            }
+
+        /* CSS per il modal */
+        .modal-content {
+            overflow-y: auto; /* Abilita lo scrolling interno nel modal */
+        }
+
+        /* Assicura che il testo sia correttamente allineato */
+        .form-check-label {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 5px; /* Aggiusta il margine se necessario */
+        }
+
+    </style>
+
+
+
+    <title>Contact</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <div class="container">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link active" href="index.html" style="color: white;">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="presentazione_gestionaleHotel.html" style="color: white;">Presentazioni</a></li>
+                <li class="nav-item"><a class="nav-link active" href="contatti.html" style="color: white;">Contatti</a></li>
+            </ul>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">RICHIEDI DEMO</button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: white;">Richiedi Demo Gratuita</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="info">
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label"></label>
+                                <div class="group">
+                                    <input required="" id="NomeID" type="text" class="input">
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Nome</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label"></label>
+                                <div class="group">
+                                    <input required="" id="CognomeID" type="text" class="input">
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Cognome</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label"></label>
+                                <div class="group">
+                                    <input required="" id="TelefonoID" type="text" class="input">
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Telefono</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label"></label>
+                                <div class="group">
+                                    <input required="" id="EmailID" type="email" class="input">
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Email</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label"></label>
+                                <div class="group">
+                                    <select required="" id="RegioneID" class="input">
+                                        <option value="" disabled selected style="display:none;"></option>
+                                        <option value="Abruzzo">Abruzzo</option>
+                                        <option value="Basilicata">Basilicata</option>
+                                        <option value="Calabria">Calabria</option>
+                                        <option value="Campania">Campania</option>
+                                        <option value="Emilia-Romagna">Emilia-Romagna</option>
+                                        <option value="Friuli-Venezia Giulia">Friuli-Venezia Giulia</option>
+                                        <option value="Lazio">Lazio</option>
+                                        <option value="Liguria">Liguria</option>
+                                        <option value="Lombardia">Lombardia</option>
+                                        <option value="Marche">Marche</option>
+                                        <option value="Molise">Molise</option>
+                                        <option value="Piemonte">Piemonte</option>
+                                        <option value="Puglia">Puglia</option>
+                                        <option value="Sardegna">Sardegna</option>
+                                        <option value="Sicilia">Sicilia</option>
+                                        <option value="Toscana">Toscana</option>
+                                        <option value="Trentino-Alto Adige/Südtirol">Trentino-Alto Adige/Südtirol</option>
+                                        <option value="Umbria">Umbria</option>
+                                        <option value="Valle d'Aosta/Vallée d'Aoste">Valle d'Aosta/Vallée d'Aoste</option>
+                                        <option value="Veneto">Veneto</option>
+                                    </select>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Regione della struttura</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label"></label>
+                                <div class="group">
+                                    <input required="" id="ProvinciaID" type="text" class="input">
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Provincia</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label"></label>
+                                <div class="group">
+                                    <select required="" id="TipoStrutturaID" class="input">
+                                        <option value="" disabled selected style="display:none;"></option>
+                                        <option value="Hotel indipendente">Hotel indipendente</option>
+                                        <option value="B&B">B&B</option>
+                                        <option value="Gruppo di hotel">Gruppo di hotel</option>
+                                        <option value="Altro">Altro</option>
+                                    </select>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Tipo di struttura</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label"></label>
+                                <div class="group">
+                                    <textarea required="" id="RichiestaID" class="input"></textarea>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Richiesta</label>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                        <button type="button" class="btn btn-primary submit-button">Invia Richiesta</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </nav>
+
+    
+        <h1>Contatti</h1>
+        <br>
+        <br>
+        <!-- Conatcts below -->
+        <main class="container mt-5">
+            <div>
+                <div class="container one">
+                    <div class="card-container" style="width: 18rem;">
+                        <div class="card-body">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10" />
+                                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                            </svg><br><br>
+                            <h5 class="card-title"><strong>bitCamp</strong></h5>
+                            <p class="card-text">
+                                Via Roma 1234,
+                                <br>6532728 Catania (IT)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-container" style="width: 18rem;">
+                        <div class="card-body">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
+                            </svg><br><br>
+                            <h5 class="card-title"><strong>Scrivici</strong></h5>
+                            <p class="card-text">info@bitCamp</p>
+                        </div>
+                    </div>
+                    <div class="card-container" style="width: 18rem;">
+                        <div class="card-body">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-telephone-forward" viewBox="0 0 16 16">
+                                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877zm10.762.135a.5.5 0 0 1 .708 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L14.293 4H9.5a.5.5 0 0 1 0-1h4.793l-1.647-1.646a.5.5 0 0 1 0-.708" />
+                            </svg><br><br>
+                            <h5 class="card-title"><strong>Contattaci</strong></h5>
+                            <p class="card-text">+1234567890</p>
+                        </div>
+                    </div>
+                </div><br><br>
+            </div>
+
+            <!-- Infomazione -->
+
+            <div class="container two">
+                <p>Hai bisogno di piu informazioni?</p>
+                <h2>Contattaci</h2>
+                <p>Il nostro Team sapra indicarti la soluzione che <br> piu addice alle tue esigenze.</p>
+            </div><br><br>
+
+
+            <div class="container three mt-5">
+                <form class="row g-3">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="Nome" placeholder="Nome" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="Telefono" class="form-control" id="Telefono" placeholder="Telefono" required>
+                    </div>
+                    <div class="col-12">
+                        <input type="email" class="form-control" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="col-12">
+                        <textarea name="textarea" id="textarea" class="form-control" rows="5" placeholder="Messaggio" required></textarea>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck1">Si, accetto l'iscrizione alla newsletter di bitCamp
+                                    
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck2">Acconsento al trattamento dei miei <a href="#">dati personali</a>, ai sensi del Regolamento Europeo n. 679/2016
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 80px;">Invia</button>
+</div>
+                </form>
+            </div>
+
+            <!-- Servizi -->
+
+            <div class="container five mt-5">
+                <div class="hotel">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-buildings" viewBox="0 0 16 16">
+                        <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022M6 8.694 1 10.36V15h5zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5z" />
+                        <path d="M2 11h1v1H2zm2 0h1v1H4zm-2 2h1v1H2zm2 0h1v1H4zm4-4h1v1H8zm2 0h1v1h-1zm-2 2h1v1H8zm2 0h1v1h-1zm2-2h1v1h-1zm0 2h1v1h-1zM8 7h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zM8 5h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zm0-2h1v1h-1z" />
+                    </svg>
+                    <strong>Hotel</strong>
+                </div>
+                <div class="bed-breakfast">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cup-hot" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6zM13 12.5a2 2 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5M2.64 13.825 1.123 7h11.754l-1.517 6.825A1.5 1.5 0 0 1 9.896 15H4.104a1.5 1.5 0 0 1-1.464-1.175" />
+                        <path d="m4.4.8-.003.004-.014.019a4 4 0 0 0-.204.31 2 2 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.6.6 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3 3 0 0 1-.202.388 5 5 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4 4 0 0 0 .204-.31 2 2 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.6.6 0 0 0-.09-.252A4 4 0 0 0 3.6 2.8l-.01-.012a5 5 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a6 6 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8m3 0-.003.004-.014.019a4 4 0 0 0-.204.31 2 2 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.6.6 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3 3 0 0 1-.202.388 5 5 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4 4 0 0 0 .204-.31 2 2 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.6.6 0 0 0-.09-.252A4 4 0 0 0 6.6 2.8l-.01-.012a5 5 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a6 6 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8m3 0-.003.004-.014.019a4 4 0 0 0-.204.31 2 2 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.6.6 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3 3 0 0 1-.202.388 5 5 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4 4 0 0 0 .204-.31 2 2 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.6.6 0 0 0-.09-.252A4 4 0 0 0 9.6 2.8l-.01-.012a5 5 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a6 6 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8" />
+                    </svg>
+                    <strong>Bed & Breakfast</strong>
+                </div>
+                <div class="residence">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z" />
+                    </svg>
+                    <strong>Residence</strong>
+                </div>
+            </div><br><br>
+
+            <h1 class="dev mt-5">Developers</h1>
+            <br>
+            <br>
+            <!-- Developers contatcts -->
+
+            <div class="container one mt-5">
+                <div class="card-container" style="width: 18rem;">
+                    <div class="card-body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                        </svg><br><br>
+                        <h5 class="card-title"><strong>Fabio</strong></h5>
+                        <p class="card-text">Junior Java Developer</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-container" style="width: 18rem;">
+                    <div class="card-body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                        </svg><br><br>
+                        <h5 class="card-title"><strong>Kevin</strong></h5>
+                        <p class="card-text">Junior Java Developer</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-container" style="width: 18rem;">
+                    <div class="card-body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                        </svg><br><br>
+                        <h5 class="card-title"><strong>Claudio</strong></h5>
+                        <p class="card-text">Junior Java Developer</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dev contatcts -->
+
+            <div class="container one">
+                <div class="card-container" style="width: 18rem;">
+                    <div class="card-body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                        </svg><br><br>
+                        <h5 class="card-title"><strong>Emmanuel</strong></h5>
+                        <p class="card-text">Junior Java Developer</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-container" style="width: 18rem;">
+                    <div class="card-body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                        </svg><br><br>
+                        <h5 class="card-title"><strong>Pasquale</strong></h5>
+                        <p class="card-text">Junior Java Developer</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-container" style="width: 18rem;">
+                    <div class="card-body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                        </svg><br><br>
+                        <h5 class="card-title"><strong>Giovanni</strong></h5>
+                        <p class="card-text">Junior Java Developer</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </main>
+    
+
+    <footer style="background-color: #007bff; color: #fff; text-align: center; padding: 20px 0;">
+        <div class="container">
+            <a href="https://www.facebook.com/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16" style="color: white; margin: 1%;">
+                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                </svg>
+            </a>
+
+            <a href="https://github.com/your_username">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16" style="color: black; margin: 1%;">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                </svg>
+            </a>
+
+            <a href="https://www.instagram.com/tuoaccount">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16" style="color: red; margin: 1%;">
+                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('.info');
+            const submitButton = document.querySelector('.submit-button');
+
+            submitButton.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                // Validazione dei campi
+                const nomeInput = document.getElementById('NomeID').value.trim();
+                const cognomeInput = document.getElementById('CognomeID').value.trim();
+                const telefonoInput = document.getElementById('TelefonoID').value.trim();
+                const emailInput = document.getElementById('EmailID').value.trim();
+                const regioneInput = document.getElementById('RegioneID').value.trim();
+                const provinciaInput = document.getElementById('ProvinciaID').value.trim();
+                const tipoStrutturaInput = document.getElementById('TipoStrutturaID').value.trim();
+                const richiestaInput = document.getElementById('RichiestaID').value.trim();
+
+                if (nomeInput === '' || cognomeInput === '' || telefonoInput === '' || emailInput === '' || regioneInput === '' || provinciaInput === '' || tipoStrutturaInput === '' || richiestaInput === '') {
+                    alert('Si prega di compilare tutti i campi!');
+                    return; // Esce dalla funzione senza inviare il modulo se un campo è vuoto
+                }
+
+                // Se tutti i campi sono stati compilati, invia il modulo e visualizza l'alert di successo
+                alert('Richiesta inviata con successo!');
+                form.reset(); // Resetta il modulo dopo l'invio
+            });
+        });
+    </script>
+</body>
+</html>
